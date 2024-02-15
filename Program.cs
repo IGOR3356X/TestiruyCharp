@@ -13,12 +13,15 @@ namespace Stepik
             //{
             //    BayBay[i].ConsoleBitch();
             //}
+            Knight warrior1 = new Knight();
+            Caster warrior2 = new Caster();
+            warrior1.ShowInfo();
+            warrior2.ShowInfo();
             while (true)
             {
-                Knight warrior1 = new Knight();
-                Caster warrior2 = new Caster();
-
-                warrior1.TakeDamage(50);
+                Console.WriteLine("Рыцарь:");
+                warrior1.TakeDamage(52);
+                Console.WriteLine("Кастер:");
                 warrior2.TakeDamage(50);
                 warrior1.ShowInfo();
                 warrior2.ShowInfo();

@@ -25,13 +25,13 @@ namespace Stepik
 
         public void TakeDamage(int damage)
         {
-            int Zahita = Armor - damage;
-            if (Zahita < 0)
+            int Defence = Armor - damage;
+            if (Defence <= 0)
             {
-                HP += Zahita;
+                HP += Defence;
                 Armor = 0;
-                Zahita -= Zahita * 2;
-                Console.WriteLine($"Броня сломана, получено урона {Zahita}");
+                Defence -= Defence * 2;
+                Console.WriteLine($"Броня сломана, получено урона {Defence}");
             }
             else
             {
