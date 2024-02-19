@@ -27,9 +27,16 @@ namespace Stepik
                 ConsoleKeyInfo CasterAtk = Console.ReadKey();
 
                 if (KnightAtk.Key == ConsoleKey.W)
+                {
+                    Console.WriteLine("Рыцарь наносит удар");
                     warrior2.TakeDamage(warrior1.Damage);
+                }
                 if (CasterAtk.Key == ConsoleKey.E)
+                {
+                    Console.WriteLine("Кастер наносит удар");
                     warrior1.TakeDamage(warrior2.Damage);
+
+                }
                 if (AbylityK.Key == ConsoleKey.A)
                     warrior1.AvalonHeal();
                 if (AbylityC.Key == ConsoleKey.D)

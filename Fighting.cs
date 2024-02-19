@@ -28,11 +28,12 @@ namespace Stepik
             {
                 Armor = 0;
                 HP -= Math.Abs(BlockDMG);
-                Console.WriteLine($"Броня сломана урона получено {Math.Abs(BlockDMG)}");
+                Console.WriteLine($"Броня сломана {Name} получил {Math.Abs(BlockDMG)} урона");
             }
             else
             {
                 Armor -= BlockDMG;
+                Console.WriteLine($"Брони осталось = {Armor} у {Name}");
             }
         }
     }
