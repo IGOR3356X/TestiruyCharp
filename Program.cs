@@ -15,24 +15,30 @@ namespace Stepik
             //}
             Knight warrior1 = new Knight();
             Caster warrior2 = new Caster();
+            GameOptions options = new GameOptions();
             warrior1.ShowInfo();
             warrior2.ShowInfo();
+            options.FirstHod();
             while (true)
             {
-                Console.WriteLine("Рыцарь:");
-                warrior1.TakeDamage(52);
-                Console.WriteLine("Кастер:");
-                warrior2.TakeDamage(50);
-                warrior1.ShowInfo();
-                warrior2.ShowInfo();
-
                 ConsoleKeyInfo AbylityK = Console.ReadKey();
                 ConsoleKeyInfo AbylityC = Console.ReadKey();
+                ConsoleKeyInfo KnightAtk = Console.ReadKey();
+                ConsoleKeyInfo CasterAtk = Console.ReadKey();
 
+                if (KnightAtk.Key == ConsoleKey.W)
+                    warrior2.TakeDamage(warrior1.Damage);
+                if (CasterAtk.Key == ConsoleKey.E)
+                    warrior1.TakeDamage(warrior2.Damage);
                 if (AbylityK.Key == ConsoleKey.A)
                     warrior1.AvalonHeal();
-                else if (AbylityC.Key == ConsoleKey.D)
+                if (AbylityC.Key == ConsoleKey.D)
                     warrior2.DamageBaff();
+
+                Console.WriteLine("Рыцарь:");
+                warrior1.ShowInfo();
+                Console.WriteLine("Кастер:");
+                warrior2.ShowInfo();
             }
         }
     }
