@@ -21,19 +21,19 @@ namespace Stepik
             Name = name;
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             int BlockDMG = Armor - damage; // Блок урона = 50 - 75 = -25
             if (BlockDMG <= 0)
             {
                 Armor = 0;
                 HP -= Math.Abs(BlockDMG);
-                Console.WriteLine($"Броня сломана {Name} получил {Math.Abs(BlockDMG)} урона");
+                Console.WriteLine($"Броня сломана. {Name} получил {Math.Abs(BlockDMG)} урона");
             }
             else
             {
                 Armor -= BlockDMG;
-                Console.WriteLine($"Брони осталось = {Armor} у {Name}");
+                Console.WriteLine($"У {Name} осталось = {Armor} ед брони");
             }
         }
     }
@@ -45,17 +45,57 @@ namespace Stepik
             HP += 20;
             Console.WriteLine($"Рыцарь использовал авалон его текущее ХП = {HP}");
         }
+        public override void TakeDamage(int damage)
+        {
+            int BlockDMG = Armor - damage/2; // Блок урона = 50 - 75 = -25
+            if (BlockDMG <= 0)
+            {
+                Armor = 0;
+                HP -= Math.Abs(BlockDMG);
+                Console.WriteLine($"Броня сломана. {Name} получил {Math.Abs(BlockDMG)} урона");
+            }
+            else
+            {
+                Armor -= BlockDMG;
+                Console.WriteLine($"У {Name} осталось = {Armor} ед брони");
+            }
+        }
         public void ShowInfo()
         {
             if (HP < 0)
                 Console.WriteLine("Рыцарь умер");
             else
-                Console.WriteLine($"Текущее статы Рыцаря: {HP}, {Armor}");
+                Console.WriteLine($"Текущее статы Рыцаря(ХП/Броня/Урон): {HP}, {Armor}, {Damage}");
         }
     }
     class Caster : Basestats
     {
         public Caster() : base(70, 25, 30, "Кастер") { }
+
+        public override void TakeDamage(int damage)
+        {
+            Random random = new Random();
+            if (random.NextDouble() <= 0.3)
+            { 
+                Console.WriteLine("Кастер уклонился от удара");
+                return;
+            }
+            else
+            {
+                int BlockDMG = Armor - damage; // Блок урона = 50 - 75 = -25
+                if (BlockDMG <= 0)
+                {
+                    Armor = 0;
+                    HP -= Math.Abs(BlockDMG);
+                    Console.WriteLine($"Броня сломана. {Name} получил {Math.Abs(BlockDMG)} урона");
+                }
+                else
+                {
+                    Armor -= BlockDMG;
+                    Console.WriteLine($"У {Name} осталось = {Armor} ед брони");
+                }
+            }
+        }
 
         public void DamageBaff()
         {
@@ -65,9 +105,9 @@ namespace Stepik
         public void ShowInfo()
         {
             if (HP < 0)
-                Console.WriteLine("Кастер умер");
+                Console.WriteLine($"Кастер умер");
             else
-                Console.WriteLine($"Текущее статы Кастера: {HP}, {Armor}");
+                Console.WriteLine($"Текущее статы Кастера(ХП/Броня/Урон): {HP}, {Armor}, {Damage}");
         }
     }
     class GameOptions
@@ -76,7 +116,7 @@ namespace Stepik
         {
             Random rand = new Random();
             if (rand.Next(0,2) > 0)
-                Console.WriteLine($"Первым ходит Кастер");
+                Console.WriteLine("Первым ходит Кастер");
             else
                 Console.WriteLine("Первым ходит Рыцарь");
         }
