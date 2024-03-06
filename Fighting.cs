@@ -110,6 +110,10 @@ namespace Stepik
                 Console.WriteLine($"Текущее статы Кастера(ХП/Броня/Урон): {HP}, {Armor}, {Damage}");
         }
     }
+    class God
+    {
+
+    }
     class GameOptions
     {
         public void FirstHod()
